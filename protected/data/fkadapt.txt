@@ -1,0 +1,20 @@
+
+-- Table: loc
+CREATE TABLE loc ( 
+    id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT    NOT NULL
+                 UNIQUE,
+    info TEXT 
+);
+
+
+-- Table: obj
+CREATE TABLE obj ( 
+    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    name   TEXT    NOT NULL
+                   UNIQUE,
+    info   TEXT,
+    loc_id INTEGER NOT NULL
+                   REFERENCES loc ( id ) 
+);
+
