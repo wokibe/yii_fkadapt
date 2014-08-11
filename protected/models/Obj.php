@@ -14,6 +14,7 @@
  */
 class Obj extends CActiveRecord
 {
+  public $loc_search;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -35,7 +36,7 @@ class Obj extends CActiveRecord
 			array('info', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, info, loc_id', 'safe', 'on'=>'search'),
+			array('id, name, info, loc_search', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,14 +82,25 @@ class Obj extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		
+		$criteria->with = array('loc');
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('info',$this->info,true);
-		$criteria->compare('loc_id',$this->loc_id);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.name',$this->name,true);
+		$criteria->compare('t.info',$this->info,true);
+		$criteria->compare('loc.name',$this->loc_search, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+			  'attributes'=>array(
+			    'loc_search'=>array(
+			      'asc'=>'loc.name',
+			      'desc'=>'loc.name DESC',
+			    ),
+			    '*',
+			  ),
+			),
 		));
 	}
 

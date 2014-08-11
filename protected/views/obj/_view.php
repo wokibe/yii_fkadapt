@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('loc_id')); ?>:</b>
-	<?php echo CHtml::encode($data->loc_id); ?>
+	<?php echo CHtml::encode($data->loc->name); ?>
 	<br />
 
 

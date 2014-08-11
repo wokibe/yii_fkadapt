@@ -33,7 +33,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'loc_id'); ?>
-		<?php echo $form->textField($model,'loc_id'); ?>
+		<?php echo $form->dropDownList($model,'loc_id',
+		  CHtml::ListData(Loc::model()->findAll(array('order'=>'name')),
+		  'id', 'name')); ?>
 		<?php echo $form->error($model,'loc_id'); ?>
 	</div>
 

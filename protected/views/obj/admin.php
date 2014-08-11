@@ -48,7 +48,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'info',
-		'loc_id',
+		array(
+		  'name'=>'loc_search',
+		  'header'=>'Location',
+		  'value'=>'$data->loc->name',
+		),
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -24,6 +24,9 @@ $this->menu=array(
 		'id',
 		'name',
 		'info',
-		'loc_id',
+		array (
+		  'name'  => 'loc_id',
+		  'value' => $model->loc->name,
+		),
 	),
 )); ?>
